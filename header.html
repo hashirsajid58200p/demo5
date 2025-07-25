@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nestoraa Navbar Component</title>
+    <!-- Bootstrap Icons CSS link -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Link to global root styles first -->
+    <link rel="stylesheet" href="./style/rootStyle.css" />
+    <!-- Then link to component-specific styles -->
+    <link rel="stylesheet" href="./style/headerStyle.css" />
+  </head>
+  <body>
+    <header class="ns-header">
+      <nav class="navbar navbar-expand-lg bg-white">
+        <div class="container-fluid px-3 px-md-5">
+          <!-- Logo -->
+          <a class="navbar-brand" href="#">
+            <img
+              src="./src/Nestoraa_Logo Files/Nestoraa_Files/WEBP/Nestoraa Green.webp"
+              class="ns-header__logo"
+              alt="Nestoraa Logo"
+            />
+          </a>
+
+          <!-- Mobile Icons (Language + Toggler) -->
+          <div class="d-flex align-items-center d-lg-none">
+            <i class="bi bi-globe ns-header__language-icon me-3"></i>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+
+          <!-- Collapsible Menu -->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Main Nav Links (Aligned Right on Desktop) -->
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">List your property</a>
+              </li>
+            </ul>
+
+            <!-- Desktop Actions (Language + Account) -->
+            <div class="d-none d-lg-flex align-items-center">
+              <i class="bi bi-globe ns-header__language-icon"></i>
+              <!-- New Dropdown Container for Account Options -->
+              <div class="ns-header__account-dropdown-container ms-4">
+                <div class="ns-header__account-option" id="desktopAccountToggle">
+                  <i class="bi bi-list ns-header__hamburger-icon"></i>
+                  <i class="bi bi-person ns-header__profile-icon"></i>
+                </div>
+                <div class="ns-header__account-dropdown-content" id="desktopAccountDropdown">
+                  <a href="#" class="ns-header__dropdown-button">Sign Up</a>
+                  <a href="#" class="ns-header__dropdown-button">Login</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Account Button (Inside Hamburger) -->
+            <div class="d-lg-none ns-header__actions-mobile">
+              <!-- New Dropdown Container for Mobile Account Options -->
+              <div class="ns-header__account-dropdown-container">
+                <div class="ns-header__account-option" id="mobileAccountToggle">
+                  <i class="bi bi-person ns-header__profile-icon"></i>
+                  <span class="ms-2">Account</span>
+                </div>
+                <div class="ns-header__account-dropdown-content" id="mobileAccountDropdown">
+                  <a href="#" class="ns-header__dropdown-button">Sign Up</a>
+                  <a href="#" class="ns-header__dropdown-button">Login</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Desktop dropdown toggle
+        const desktopAccountToggle = document.getElementById('desktopAccountToggle');
+        const desktopAccountDropdown = document.getElementById('desktopAccountDropdown');
+
+        if (desktopAccountToggle && desktopAccountDropdown) {
+          desktopAccountToggle.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent click from closing immediately
+            desktopAccountDropdown.classList.toggle('show-dropdown');
+          });
+        }
+
+        // Mobile dropdown toggle
+        const mobileAccountToggle = document.getElementById('mobileAccountToggle');
+        const mobileAccountDropdown = document.getElementById('mobileAccountDropdown');
+
+        if (mobileAccountToggle && mobileAccountDropdown) {
+          mobileAccountToggle.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent click from closing immediately
+            mobileAccountDropdown.classList.toggle('show-dropdown');
+          });
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+          if (desktopAccountDropdown && desktopAccountDropdown.classList.contains('show-dropdown') && !desktopAccountDropdown.contains(event.target) && event.target !== desktopAccountToggle) {
+            desktopAccountDropdown.classList.remove('show-dropdown');
+          }
+          if (mobileAccountDropdown && mobileAccountDropdown.classList.contains('show-dropdown') && !mobileAccountDropdown.contains(event.target) && event.target !== mobileAccountToggle) {
+            mobileAccountDropdown.classList.remove('show-dropdown');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
